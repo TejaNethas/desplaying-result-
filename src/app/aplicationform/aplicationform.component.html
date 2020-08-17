@@ -1,24 +1,61 @@
+ <div class="container-fluid">
+        <form class="eventBookingForm py-3" novalidate (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+            <div class="form-row">
 
-<h1 class="text-center mt-5">Admission Form</h1>
-<!--[disabled]="userForm.form.invalid"-->
-<div class="container">
-    <form action="">
-        <div class="form-group">
-            <label for="name" >Enter Your Name</label>
-            <input type="text" class="form-control" required id="name" >
-        </div>
-        <div class="form-group">
-            <label for="lastname" >Enter Your Last Name</label>
-            <input type="text" class="form-control" required id="lastname" >
-        </div>
-        <div class="form-group">
-            <label for="class" >Enter Your Class</label>
-            <input type="text" class="form-control" required id="class" >
-        </div>
-        <div class="form-group">
-            <label for="yearOfPassing" >Enter Year Of passing</label>
-            <input type="number" class="form-control" id="yearOfPassing" >
-        </div>
-        <button type="submit" class="btn btnprimary">submit</button>
-    </form>
-</div>
+                <div class="form-group col-md-3">
+                    <label for="firstName" class="font-weight-bold">First Name<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" name="firstName" ngModel #firstName="ngModel" pattern="^[a-zA-Z][a-zA-Z ]*$" maxlength="20" id="firstName" placeholder="Name" required>
+                    <span class="text-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                        <p class="small m-0" *ngIf="firstName.errors.required">First name is required</p>
+                        <p class="small m-0" *ngIf="firstName.errors.pattern">First name not allow numbers and special characters</p>
+                     </span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="lastName" class="font-weight-bold">Last Name<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" name="lastName" ngModel #lastName="ngModel" pattern="^[a-zA-Z][a-zA-Z ]*$" maxlength="20" id="lastName" placeholder="Last Name" required>
+                    <span class="text-danger" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+                        <p class="small m-0" *ngIf="lastName.errors.required">Last name is required</p>
+                        <p class="small m-0" *ngIf="lastName.errors.pattern">Last name not allow numbers and special characters</p>
+                     </span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="classType" class="font-weight-bold">Class<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" pattern="[a-zA-Z0-9-]+" maxlength="3" id="classType" name="classType" ngModel #classType="ngModel" placeholder="Class" required>
+                    <span class="text-danger" *ngIf="classType.errors && (classType.dirty || classType.touched)">
+                        <p class="small m-0" *ngIf="classType.errors.required">Class is required</p>
+                        <p class="small m-0" *ngIf="classType.errors.pattern">Class not allow special characters - format (5A or 2B) </p>
+                     </span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="yearOfPassing" class="font-weight-bold">Year of Passing<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" pattern="[0-9]{4}" maxlength="4" id="yearOfPassing" name="yearOfPassing" ngModel #yearOfPassing="ngModel" placeholder="Year of Passing" required>
+                    <span class="text-danger" *ngIf="yearOfPassing.errors && (yearOfPassing.dirty || yearOfPassing.touched)">
+                        <p class="small m-0" *ngIf="yearOfPassing.errors.required">Year of passing is required</p>
+                        <p class="small m-0" *ngIf="yearOfPassing.errors.pattern">Year of passing not allow special characters - format (2016) </p>
+                     </span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="percentageOfMarks" class="font-weight-bold">Percentage(%) of Marks<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" pattern="[0-9]+" maxlength="3" id="percentageOfMarks" name="percentageOfMarks" ngModel #percentageOfMarks="ngModel" placeholder="Year of Passing" required>
+                    <span class="text-danger" *ngIf="percentageOfMarks.errors && (percentageOfMarks.dirty || percentageOfMarks.touched)">
+                        <p class="small m-0" *ngIf="percentageOfMarks.errors.required">Percentage(%) of marks is required</p>
+                        <p class="small m-0" *ngIf="percentageOfMarks.errors.pattern">Percentage(%) of mark not allow special characters - format (1 - 100) </p>
+                     </span>
+                </div>
+
+            </div>
+
+
+
+            <div class="eventFormSubmitBtns clearfix">
+                <a class="btn btn-cancel float-right mx-2" routerLink="/events">Cancel</a>
+                <button type="submit" type="submit" [disabled]="f.invalid" class="btn btn-booking float-right mx-2">Submit</button>
+            </div>
+
+
+        </form>
+    </div>
