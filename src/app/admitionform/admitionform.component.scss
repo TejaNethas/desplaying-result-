@@ -1,0 +1,15 @@
+.green{
+    color:green;
+}
+.red{
+    color:red;
+}
+.black{
+    color:black;
+}
+thead :first-child{
+border-right:none;
+}
+thead :nth-child(2){
+    font-style: italic;
+}

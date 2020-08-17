@@ -1,0 +1,34 @@
+<div>
+    <table  class="table table-bordered">
+        <thead>
+            <tr><th>student Result Board</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+            <tr>
+                <th>student name</th>
+                <th>Roll number</th>
+                <th>Total marks</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of data; let i = index">
+                <td>
+                    {{a.name}}
+                </td>
+
+                <td>{{a.rollNumber}}</td>
+
+                <td>{{computeMarks(a.marks.Maths , a.marks.English , a.marks.Science)}}</td>
+
+                <td>
+                    <span *ngIf="passArray[i]==true" class="green">Pass</span>
+                    <span *ngIf="passArray[i]==false" class="red">Fail</span>
+                    <span *ngIf="passArray[i]==true" class="black">Topper</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> 
